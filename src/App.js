@@ -6,13 +6,14 @@ import FilterLink from "./features/filters/filterLink";
 import { VisibilityFilters } from "./features/filters/filterSlice";
 
 const App = () => (
-  <div>
+  <div className="max-w-xl mx-auto mt-8 flex flex-col items-center">
     <AddTodo />
+    <div className="flex space-x-3 mt-4">
+      <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+      <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
+      <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+    </div>
     <TodoList />
-    <span>Show: </span>
-    <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
-    <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
-    <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
   </div>
 );
 
