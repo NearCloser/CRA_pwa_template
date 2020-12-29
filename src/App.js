@@ -1,13 +1,19 @@
-import React from 'react';
-import Near_String from './near_string_.png';
+import React from "react";
 
-function App() {
-  return (
-      <div className="flex flex-col justify-center items-center min-h-screen text-lg font-mono">
-        <img src={Near_String} className="h-60 mb-8" alt="Icon" />
-        <p className=" text-blueGray-800 text-3xl">This is pwa CRA template with Tailwindcss.</p>
-      </div>
-  );
-}
+import AddTodo from "./features/todos/Addtodo";
+import TodoList from "./features/todos/todoList";
+import FilterLink from "./features/filters/filterLink";
+import { VisibilityFilters } from "./features/filters/filterSlice";
+
+const App = () => (
+  <div>
+    <AddTodo />
+    <TodoList />
+    <span>Show: </span>
+    <FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+    <FilterLink filter={VisibilityFilters.SHOW_ACTIVE}>Active</FilterLink>
+    <FilterLink filter={VisibilityFilters.SHOW_COMPLETED}>Completed</FilterLink>
+  </div>
+);
 
 export default App;
