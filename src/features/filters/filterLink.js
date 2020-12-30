@@ -12,7 +12,7 @@ const FilterLink = ({ filter, children }) => {
       disabled={active}
       className={` ${
         active ? "bg-blueGray-100" : null
-      }  block rounded-md border py-1 px-2 text-sm hover:bg-blueGray-100 focus:outline-none select-none`}
+      }  block rounded-md border py-1 px-3 text-sm hover:bg-blueGray-100 focus:outline-none select-none`}
     >
       {children}
     </button>

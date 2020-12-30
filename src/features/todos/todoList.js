@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "@reduxjs/toolkit";
+
 import { VisibilityFilters } from "../filters/filterSlice";
-import { toggleTodo } from "./todoSlice";
+import { toggleTodo, deleteTodo, allSet } from "./todoSlice";
+import EditTodo from "./Edittodo";
+
+import DeleteIcon from "@material-ui/icons/Delete";
+import CheckCircleOutlineIcon from "@material-ui/icons/CheckCircleOutline";
 
 const TodoList = () => {
   const dispatch = useDispatch();
@@ -24,15 +29,48 @@ const TodoList = () => {
 
   const todos = useSelector((state) => selectVisibleTodos(state));
 
+  const ref = useRef();
+
+  const handleClickOutside = (e) => {
+    if (ref?.current?.contains(e.target)) {
+      // inside click
+      return;
+    }
+    // outside click
+    if (todos.some((todo) => todo.editing)) {
+      dispatch(allSet());
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
+
   return (
-    <ul className="my-4">
+    <ul className="my-4" ref={ref}>
       {todos.map((todo) => (
-        <li
-          key={todo.id}
-          onClick={() => dispatch(toggleTodo(todo.id))}
-          className={`${todo.completed ? "line-through" : "none"} px-2 py-1`}
-        >
-          {todo.text}
+        <li key={todo.id} className={`px-2 py-1`}>
+          <div
+            className={`${
+              todo.completed ? "bg-blue-50" : "bg-red-50"
+            }  flex items-center rounded-xl px-4 py-1 space-x-2`}
+          >
+            <CheckCircleOutlineIcon
+              className={`${
+                todo.completed ? "text-opacity-100 text-blue-300" : "opacity-20 text-red-300"
+              } cursor-pointer`}
+              onClick={() => dispatch(toggleTodo(todo.id))}
+            />
+            <EditTodo todo={todo} />
+            <DeleteIcon
+              fontSize="small"
+              className="text-red-300 cursor-pointer"
+              onDoubleClick={() => dispatch(deleteTodo(todo.id))}
+            />
+          </div>
         </li>
       ))}
     </ul>

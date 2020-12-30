@@ -27,7 +27,7 @@ const AddTodo = () => {
         />
         <button
           type="submit"
-          className="border-t border-b border-r p-2 rounded-md border-blue-300 bg-blue-300 text-white transition-colors"
+          className="border-t border-b border-r p-2 rounded-md border-blue-300 bg-blue-300 text-white transition-colors focus:outline-none"
         >
           Add Todo
         </button>
