@@ -1,20 +1,20 @@
-# CRA_pwa_template
+## CRA_pwa_template
 
 This is cra pwa template with tailwindcss.
 
-# Development
+### Development
 
 ```
 yarn dev
 ```
 
-# Production
+### Production
 
 ```
 yarn build
 ```
 
-# Production Serve
+### Production Serve
 
 ```
 yarn serve
