@@ -23,11 +23,11 @@ const AddTodo = () => {
         <input
           value={todoText}
           onChange={onChange}
-          className="focus:outline-none border border-blue-400 p-2 rounded-md flex-1"
+          className="focus:outline-none border border-blue-400 py-2 px-4 rounded-md flex-1"
         />
         <button
           type="submit"
-          className="border-t border-b border-r p-2 rounded-md border-blue-300 bg-blue-300 text-white transition-colors focus:outline-none"
+          className="border-t border-b border-r p-2 rounded-md border-blue-300 bg-blue-300 text-white hover:opacity-80 transition-opacity focus:outline-none"
         >
           Add Todo
         </button>

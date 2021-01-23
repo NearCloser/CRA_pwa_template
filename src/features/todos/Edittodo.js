@@ -1,8 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { editTodo, toggleEdit } from "./todoSlice";
+import { editTodo, toggleEdit, toggleShow } from "./todoSlice";
 
 import EditIcon from "@material-ui/icons/Edit";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 
 const EditTodo = ({ todo }) => {
   const dispatch = useDispatch();
@@ -31,22 +32,30 @@ const EditTodo = ({ todo }) => {
 
   return (
     <>
-      <form onSubmit={onSubmit} className="flex items-center">
+      <form onSubmit={onSubmit} className="flex items-center w-full">
         <EditIcon
           fontSize="small"
-          className={`${todo.editing ? "text-blue-300" : "text-blue-200"} cursor-pointer`}
+          className={`${todo.editing ? "text-blue-400" : "text-blue-200"} cursor-pointer ml-2`}
           onClick={() => {
             dispatch(toggleEdit(todo.id));
           }}
         />
-        <input
-          ref={todoRef}
-          value={todoText}
-          onChange={onChange}
-          onFocus={(e) => e.currentTarget.select()}
-          disabled={!todo.editing}
-          className="focus:outline-none p-2 mx-2 rounded-2xl text-center bg-white text-sm"
+        <TrendingUpIcon
+          onClick={() => {
+            dispatch(toggleShow(todo.id));
+          }}
+          className={`${todo.show ? "text-blue-400" : "text-blue-200"} cursor-pointer ml-2`}
         />
+        <div className="w-full mx-2">
+          <input
+            ref={todoRef}
+            value={todoText}
+            onChange={onChange}
+            onFocus={(e) => e.currentTarget.select()}
+            disabled={!todo.editing}
+            className="focus:outline-none py-2 px-4 rounded-2xl bg-white text-sm w-full block"
+          />
+        </div>
       </form>
     </>
   );

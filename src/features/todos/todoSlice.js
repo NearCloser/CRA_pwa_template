@@ -9,7 +9,7 @@ const todosSlice = createSlice({
       reducer(state, action) {
         const { text } = action.payload;
 
-        state.push({ id: uuidv4(), text, completed: false, editing: false });
+        state.push({ id: uuidv4(), text, completed: false, editing: false, show: false });
       },
       prepare(text) {
         return { payload: { text } };
@@ -44,9 +44,23 @@ const todosSlice = createSlice({
         return { payload: { text, id } };
       },
     },
+    toggleShow(state, action) {
+      state.forEach((todo) => {
+        if (todo.id === action.payload) todo.show = !todo.show;
+        // else if (todo.show) todo.show = false;
+      });
+    },
   },
 });
 
-export const { addTodo, toggleTodo, toggleEdit, deleteTodo, editTodo, allSet } = todosSlice.actions;
+export const {
+  addTodo,
+  toggleTodo,
+  toggleEdit,
+  deleteTodo,
+  editTodo,
+  allSet,
+  toggleShow,
+} = todosSlice.actions;
 
 export default todosSlice.reducer;

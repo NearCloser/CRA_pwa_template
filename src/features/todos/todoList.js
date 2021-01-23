@@ -50,14 +50,14 @@ const TodoList = () => {
   });
 
   return (
-    <div className="max-w-screen-md mx-auto">
+    <div className="max-w-screen-md mx-auto relative">
       <ul className="my-8 gap-y-4 flex flex-col items-start" ref={ref}>
         {todos.map((todo) => (
-          <li key={todo.id} className={`px-2 py-1 inline-block`}>
+          <li key={todo.id} className={`px-2 py-1 w-full`}>
             <div
               className={`${
                 todo.completed ? "bg-blue-50" : "bg-red-50"
-              }  flex items-center rounded-md px-4 py-1 space-x-2`}
+              }  flex items-center rounded-md px-4 py-1`}
             >
               <CheckCircleOutlineIcon
                 className={`${
@@ -72,6 +72,11 @@ const TodoList = () => {
                 onDoubleClick={() => dispatch(deleteTodo(todo.id))}
               />
             </div>
+            {todo.show && (
+              <div className="px-4 py-1">
+                <p>{todo.text}</p>
+              </div>
+            )}
           </li>
         ))}
       </ul>
