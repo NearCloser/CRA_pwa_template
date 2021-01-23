@@ -19,11 +19,11 @@ const AddTodo = () => {
 
   return (
     <div className="text-sm">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className="flex flex-row">
         <input
           value={todoText}
           onChange={onChange}
-          className="focus:outline-none border border-blue-400 p-2 rounded-md"
+          className="focus:outline-none border border-blue-400 p-2 rounded-md flex-1"
         />
         <button
           type="submit"

@@ -50,30 +50,32 @@ const TodoList = () => {
   });
 
   return (
-    <ul className="my-4" ref={ref}>
-      {todos.map((todo) => (
-        <li key={todo.id} className={`px-2 py-1`}>
-          <div
-            className={`${
-              todo.completed ? "bg-blue-50" : "bg-red-50"
-            }  flex items-center rounded-xl px-4 py-1 space-x-2`}
-          >
-            <CheckCircleOutlineIcon
+    <div className="max-w-screen-md mx-auto">
+      <ul className="my-8 gap-y-4 flex flex-col items-start" ref={ref}>
+        {todos.map((todo) => (
+          <li key={todo.id} className={`px-2 py-1 inline-block`}>
+            <div
               className={`${
-                todo.completed ? "text-opacity-100 text-blue-300" : "opacity-20 text-red-300"
-              } cursor-pointer`}
-              onClick={() => dispatch(toggleTodo(todo.id))}
-            />
-            <EditTodo todo={todo} />
-            <DeleteIcon
-              fontSize="small"
-              className="text-red-300 cursor-pointer"
-              onDoubleClick={() => dispatch(deleteTodo(todo.id))}
-            />
-          </div>
-        </li>
-      ))}
-    </ul>
+                todo.completed ? "bg-blue-50" : "bg-red-50"
+              }  flex items-center rounded-md px-4 py-1 space-x-2`}
+            >
+              <CheckCircleOutlineIcon
+                className={`${
+                  todo.completed ? "text-opacity-100 text-blue-300" : "opacity-20 text-red-300"
+                } cursor-pointer`}
+                onClick={() => dispatch(toggleTodo(todo.id))}
+              />
+              <EditTodo todo={todo} />
+              <DeleteIcon
+                fontSize="small"
+                className="text-red-300 cursor-pointer"
+                onDoubleClick={() => dispatch(deleteTodo(todo.id))}
+              />
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
